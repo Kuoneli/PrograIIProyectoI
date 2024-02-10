@@ -35,6 +35,7 @@ do
                         if (menu == 1)
                         {
                             Console.WriteLine("Estudiante\n1-Aprobados\n2-Reprobados\n3-Aplazados\n");
+                            MostrarDatosPorCondicion();
                         }
                         else if (menu == 2)
                         {
