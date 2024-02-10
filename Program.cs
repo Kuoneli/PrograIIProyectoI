@@ -1,8 +1,11 @@
 ﻿
 //Variables
+using System.Diagnostics;
+using System.Diagnostics.Contracts;
+
 int[] cedula = new int[10], promedio = new int[10];
 string[] nombre = new string[10], condicion = new string[10];
-int menu = 0, seleccion = 0;
+int menu = 0, seleccion = 0, contador=0;
 bool error = false;
 
 //Menu
@@ -85,7 +88,8 @@ void InicializarVectores()
     nombre = Enumerable.Repeat("n/a", nombre.Length).ToArray();
     condicion = Enumerable.Repeat("n/a", condicion.Length).ToArray();
     Console.WriteLine($"Variable Inicializadas\n Presione \"ENTER\" para volver al menu principal");
-    Console.ReadLine();
+    contador = 0;
+    Console.ReadKey();
 }
 
 void MostrarDatosPorCondicion()
@@ -99,7 +103,7 @@ void MostrarTodosLosDatos()
     for (int x = 0; x < nombre.Length; x++)
     {
 
-        Console.WriteLine($"{cedula[x]}           {nombre[x]}        {promedio[x]}          {condicion[x]}");
+        Console.WriteLine($"{cedula[x]}        {nombre[x]}           {promedio[x]}      {condicion[x]}");
 
     }
     Console.WriteLine("=========================================================================\r\n\n");
@@ -107,6 +111,7 @@ void MostrarTodosLosDatos()
 }
 void IncluirEstudiantes()
 {
+    /*How can i improve the below code*/
     Console.WriteLine("Digite la cantidad de estudiantes a ingresar: ");
     seleccion = Convert.ToInt32(Console.ReadLine());
     for (int x = 0; x < seleccion; x++)
@@ -117,18 +122,59 @@ void IncluirEstudiantes()
             try
             {
                 Console.WriteLine("Ingrese la cedula del estudiantes: ");
-                cedula[x] = Convert.ToInt32(Console.ReadLine());
+                cedula[contador] = Convert.ToInt32(Console.ReadLine());
+                error = false;
             }
             catch (FormatException)
             {
-                Console.WriteLine("No se valen letras, pongase serio");
+                Console.WriteLine("No se valen letras, pongase serio\n");
                 error = true;
             }
 
         } while (error == true);
-       
 
+        do
+        {
+            try
+            {
+                Console.WriteLine("Ingrese el nombre del estudiante: ");
+                nombre[contador] = Console.ReadLine();
+                error = false;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("No se valen numero, pongase serio\n");
+                error = true;
+            }
 
+        } while (error == true);
+
+        do
+        {
+            try
+            {
+                Console.WriteLine("Ingrese el promedio del estudiante: ");
+                promedio[contador] = Convert.ToInt32(Console.ReadLine());
+                if (promedio[contador] >= 70) 
+                {
+                    Console.WriteLine("Condicion: APROBADO");
+                    condicion[contador] = "APROBADO";
+                }
+                else
+                {
+                    Console.WriteLine("Condicion:REPROBADO");
+                    condicion[contador] = "REPROBADO";
+                }
+                Console.ReadKey();
+                error = false;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Favor no utilizar letras\n");
+                error = true;
+            }
+            contador++;
+        } while (error == true);
     }
 
 }
