@@ -18,12 +18,16 @@ do
                 InicializarVectores();
                 break;
             case 2:
+                IncluirEstudiantes();
                 break;
             case 3:
+                ConsultarEstudiantes();
                 break;
             case 4:
+                ModificarEstudiante();
                 break;
             case 5:
+                EliminarEstudiantes();
                 break;
             case 6:
                 do
@@ -95,5 +99,21 @@ void MostrarTodosLosDatos()
 
     }
     Console.WriteLine("=========================================================================\r\n\n");
+
+}
+void IncluirEstudiantes()
+{
+
+}
+void ConsultarEstudiantes()
+{
+
+}
+void ModificarEstudiante()
+{
+
+}
+void EliminarEstudiantes()
+{
 
 }
