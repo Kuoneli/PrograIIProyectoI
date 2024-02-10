@@ -1,15 +1,17 @@
 ﻿
+//Variables
+int[] cedula = new int[10], promedio = new int[10];
+string[] nombre = new string[10], condicion = new string[10];
+int menu = 0, seleccion = 0;
+bool error = false;
 
-int[] cedula = new int [10], promedio = new int[10];
-string[] nombre = new string [10], condicion= new string[10];
-
-int menu = 0, posicion = 1;
+//Menu
 Console.WriteLine("Bienvenido al sistema academico\n");
-
 do
 {
     Console.Clear();
-    try	{
+    try
+    {
         Console.WriteLine("Selecccione de las siguientes opciones:\n1-Iniciar Vectores\n2-Incluir estudiantes\n3-Consultar Estudiantes\n4-Modificar Estudiantes\n5-Eliminar Estudiantes\n6-Submenu Reportes\n7-Salir");
         menu = int.Parse(Console.ReadLine());
         switch (menu)
@@ -68,10 +70,11 @@ do
                 break;
         }
     }
-	catch (FormatException) { 
-	
+    catch (FormatException)
+    {
+
         Console.WriteLine("No se admiten letras\nIntente de nuevo\n");
-        
+
     }
 } while (menu != 7);
 
@@ -82,7 +85,7 @@ void InicializarVectores()
     nombre = Enumerable.Repeat("n/a", nombre.Length).ToArray();
     condicion = Enumerable.Repeat("n/a", condicion.Length).ToArray();
     Console.WriteLine($"Variable Inicializadas\n Presione \"ENTER\" para volver al menu principal");
-    Console.ReadLine(); 
+    Console.ReadLine();
 }
 
 void MostrarDatosPorCondicion()
@@ -93,7 +96,8 @@ void MostrarTodosLosDatos()
 {
     string sumacedula = "";
     Console.WriteLine("Cedula    Nombre    Promedio    Condicion\n=========================================================================\n");
-    for (int x = 0;  x < nombre.Length; x++) {
+    for (int x = 0; x < nombre.Length; x++)
+    {
 
         Console.WriteLine($"{cedula[x]}           {nombre[x]}        {promedio[x]}          {condicion[x]}");
 
@@ -103,7 +107,29 @@ void MostrarTodosLosDatos()
 }
 void IncluirEstudiantes()
 {
-    Console.WriteLine();
+    Console.WriteLine("Digite la cantidad de estudiantes a ingresar: ");
+    seleccion = Convert.ToInt32(Console.ReadLine());
+    for (int x = 0; x < seleccion; x++)
+    {
+
+        do
+        {
+            try
+            {
+                Console.WriteLine("Ingrese la cedula del estudiantes: ");
+                cedula[x] = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("No se valen letras, pongase serio");
+                error = true;
+            }
+
+        } while (error == true);
+       
+
+
+    }
 
 }
 void ConsultarEstudiantes()
