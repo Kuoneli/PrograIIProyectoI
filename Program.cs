@@ -103,6 +103,7 @@ void MostrarTodosLosDatos()
 }
 void IncluirEstudiantes()
 {
+    Console.WriteLine();
 
 }
 void ConsultarEstudiantes()
