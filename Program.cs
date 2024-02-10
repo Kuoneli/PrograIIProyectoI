@@ -80,7 +80,7 @@ void InicializarVectores()
     Console.ReadLine(); 
 }
 
-void MostrarVariable()
+void MostrarVectores()
 {
     string sumacedula = "";
     Console.WriteLine("Cedula    Nombre    Promedio    Condicion\n=========================================================================\n");
