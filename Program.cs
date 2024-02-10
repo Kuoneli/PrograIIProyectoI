@@ -38,7 +38,7 @@ do
                         }
                         else if (menu == 2)
                         {
-                            MostrarVariable();
+                            MostrarTodosLosDatos();
                         }
                         else if (menu == 3)
                         {
@@ -80,7 +80,11 @@ void InicializarVectores()
     Console.ReadLine(); 
 }
 
-void MostrarVectores()
+void MostrarDatosPorCondicion()
+{
+
+}
+void MostrarTodosLosDatos()
 {
     string sumacedula = "";
     Console.WriteLine("Cedula    Nombre    Promedio    Condicion\n=========================================================================\n");
