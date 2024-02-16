@@ -94,6 +94,40 @@ void InicializarVectores()
 
 void MostrarDatosPorCondicion()
 {
+    try
+    {
+        Console.WriteLine("Seleccione la condición respectiva a los datos de los estudiantes.\n1 - Estudiantes Aprobados\n2 - Estudiantes Reprobados");
+        int SelectCondiDatos = 0;
+        SelectCondiDatos = int.Parse(Console.ReadLine());
+
+        switch (SelectCondiDatos)
+        {
+            case 1:
+                Console.WriteLine("Cédula    Nombre    Condición\n=========================================================================\n");
+                for (int i = 0; i < nombre.Length; i++)
+                {
+                    if (condicion[i] == "APROBADO")
+                    {
+                        Console.WriteLine($"{cedula[i]}        {nombre[i]}           {promedio[i]}      {condicion[i]}");
+                    }
+                }
+                break;
+            case 2:
+                Console.WriteLine("Cédula    Nombre    Condición\n=========================================================================\n");
+                for (int i = 0; i < nombre.Length; i++)
+                {
+                    if (condicion[i] == "REPROBADO")
+                    {
+                        Console.WriteLine($"{cedula[i]}        {nombre[i]}           {promedio[i]}      {condicion[i]}");
+                    }
+                }
+                break;
+        }
+    }
+    catch (FormatException)
+    {
+        Console.WriteLine("Se ingresó un dato incorrecto. Inténtelo de nuevo.");
+    }
 
 }
 void MostrarTodosLosDatos()
@@ -180,13 +214,64 @@ void IncluirEstudiantes()
 }
 void ConsultarEstudiantes()
 {
-
+    MostrarTodosLosDatos();
+    Console.WriteLine("Presione cualquier tecla para volver al menú principal...");
+    Console.ReadKey();
 }
 void ModificarEstudiante()
 {
+    Console.WriteLine("Ingrese el número de cédula del estudiante a modificar:");
+    int cedulaModificar = Convert.ToInt32(Console.ReadLine());
 
+    // Buscar el estudiante por cedula
+    int indice = Array.IndexOf(cedula, cedulaModificar);
+
+    if (indice != -1)
+    {
+        Console.WriteLine("Ingrese el nuevo nombre del estudiante:");
+        nombre[indice] = Console.ReadLine();
+
+        Console.WriteLine("Ingrese el nuevo promedio del estudiante:");
+        promedio[indice] = Convert.ToInt32(Console.ReadLine());
+
+        if (promedio[indice] >= 70)
+            condicion[indice] = "APROBADO";
+        else
+            condicion[indice] = "REPROBADO";
+
+        Console.WriteLine("Estudiante modificado correctamente.");
+    }
+    else
+    {
+        Console.WriteLine("No se encontró ningún estudiante con esa cédula.");
+    }
+
+    Console.WriteLine("Presione cualquier tecla para volver al menú principal...");
+    Console.ReadKey();
 }
 void EliminarEstudiantes()
 {
+    Console.WriteLine("Ingrese el número de cédula del estudiante a eliminar:");
+    int cedulaEliminar = Convert.ToInt32(Console.ReadLine());
 
+    // Buscar el estudiante por su número de cédula
+    int indice = Array.IndexOf(cedula, cedulaEliminar);
+
+    if (indice != -1)
+    {
+        // Eliminar el estudiante
+        cedula[indice] = 0;
+        nombre[indice] = "n/a";
+        promedio[indice] = 0;
+        condicion[indice] = "n/a";
+
+        Console.WriteLine("Estudiante eliminado correctamente.");
+    }
+    else
+    {
+        Console.WriteLine("No se encontró ningún estudiante con esa cédula.");
+    }
+
+    Console.WriteLine("Presione cualquier tecla para volver al menú principal...");
+    Console.ReadKey();
 }
